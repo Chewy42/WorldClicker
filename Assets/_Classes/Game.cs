@@ -22,4 +22,12 @@ public class Game : MonoBehaviour
     public void Click(){
         CashHandler.AddCash(cashPerClick);
     }
+
+    public void UpgradeCPC(){
+        if(CashHandler.UpgradeCPC()){
+            cashPerClick = Mathf.Ceil(cashPerClick + 1);
+        }
+    }
+
+
 }
