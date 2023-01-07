@@ -6,7 +6,13 @@ public class Game : MonoBehaviour
 {
 
     public CashHandler CashHandler;
-    private float cashPerClick = 1f;
+    private float cashPerClick = 100f;
+
+    private bool hasSpaceship = false;
+
+
+
+    [SerializeField] private GameObject spaceship;
 
 
     void Start()
@@ -16,7 +22,16 @@ public class Game : MonoBehaviour
 
     void Update()
     {
-        
+        //if has spaceship move -396.34f left then do a 180 on z axis and go back to start then loop and add 1 cash per second
+        if(hasSpaceship){
+            print("moving!");
+            spaceship.transform.Translate(Vector3.left * 396.34f * Time.deltaTime);
+            if(spaceship.transform.position.x <= -11.38f){
+                print("moving back!");
+                spaceship.transform.Rotate(0, 0, 180);
+                CashHandler.AddCash(1);
+            }
+        }
     }
 
     public void Click(){
@@ -26,6 +41,14 @@ public class Game : MonoBehaviour
     public void UpgradeCPC(){
         if(CashHandler.UpgradeCPC()){
             cashPerClick = Mathf.Ceil(cashPerClick + 1);
+        }
+    }
+
+    public void UpgradeSpaceship(){
+        if(CashHandler.UpgradeSpaceship()){
+            // instantiate spaceship as a child of the gameobject named "Upgrade-2"
+            spaceship = Instantiate(spaceship, GameObject.Find("Upgrade-2").transform);
+            hasSpaceship = true;
         }
     }
 
