@@ -12,6 +12,5 @@ public class Upgrade : MonoBehaviour
     [SerializeField] protected GameObject upgradePrefab; // item to be spawned after initial purchase
     [SerializeField] protected bool isPurchased = false; //after initial purcahse, change title text
     [SerializeField] protected float upgradeCost;
-    [SerializeField] protected float upgradeCostMultiplier = 1.5f;
-    
+    [SerializeField] protected float upgradeCostMultiplier = 1.5f;  
 }
